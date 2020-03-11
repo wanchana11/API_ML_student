@@ -3,6 +3,7 @@ from flask_restful import Resource, Api, reqparse
 from sklearn.externals import joblib
 import pandas as pd
 import numpy as np
+from urllib.parse import unquote
 school_name_array= ["กมลาไสย","กันทรลักษ์วิทยา","กัลยาณวัตร","กาญจนาภิเษกวิทยาลัย","กาฬสินธุ์พิทยาสรรพ์","กุมภวาปี","ขอนแก่นวิทยายน","ขามแก่นนคร",\
 "คำเขื่อนแก้วชนูปถัมภ์","อุบลรัตน์พิทยาคม","จันทรุเบกษาอนุสรณ์","จุฬาภรณราชวิทยาลัย  มุกดาหาร","ชนบทศึกษา","ชัยภูมิภักดีชุมพล","ชุมพลโพนพิสัย","ชุมแพศึกษา",\
 "ดอนบอสโก","ดอนบอสโกวิทยา","ท่าบ่อ","ธาตุนารายณ์วิทยา","ธาตุพนม","นครขอนแก่น","นางรอง","นารีนุกูล","น้ำพองศึกษา","บัวขาว","บัวใหญ่","บึงกาฬ",\
@@ -62,20 +63,20 @@ model = joblib.load('SVM_model_student_last.pkl')
 model_gpa =joblib.load('NN_model_student_use_GPA.pkl')
 class student_predict(Resource):
     def get(self):        
-        return {"student_predication":"Welcome to API for student prediction perfomance no use GPA university year 1 semesters 2"}
+        return {"student_predication":"Welcome to API for student prediction perfomance no use GPA university year 1 semesters 2 สำเร็จการสึกษา"}
 
     def post(self):
         parser = reqparse.RequestParser()
-        parser.add_argument('ADMISSIONS_TYPE')
-        parser.add_argument('FACULTY')
-        parser.add_argument('SCHOOL_NAME')
-        parser.add_argument('ENTRY_GPA')
-        parser.add_argument('YEAR_COME')
-        parser.add_argument('STUDENT_GENDER')
-        parser.add_argument('FATHER_EDUCATION')
-        parser.add_argument('FATHER_OCUPATION')
-        parser.add_argument('MOTHER_EDUCATION')
-        parser.add_argument('MOTHER_OCUPATION')
+        parser.add_argument('ADMISSIONS_TYPE',type=str)
+        parser.add_argument('FACULTY',type=str)
+        parser.add_argument('SCHOOL_NAME',type=str)
+        parser.add_argument('ENTRY_GPA',type=str)
+        parser.add_argument('YEAR_COME',type=str)
+        parser.add_argument('STUDENT_GENDER',type=str)
+        parser.add_argument('FATHER_EDUCATION',type=str)
+        parser.add_argument('FATHER_OCUPATION',type=str)
+        parser.add_argument('MOTHER_EDUCATION',type=str)
+        parser.add_argument('MOTHER_OCUPATION',type=str)
         args = parser.parse_args()
         
         def check_admissions_type(str_entry_type):
@@ -277,17 +278,17 @@ class student_predict_gpa(Resource):
                 
     def post(self):
         parser = reqparse.RequestParser()
-        parser.add_argument('ADMISSIONS_TYPE')
-        parser.add_argument('FACULTY')
-        parser.add_argument('SCHOOL_NAME')
-        parser.add_argument('ENTRY_GPA')
-        parser.add_argument('YEAR_COME')
-        parser.add_argument('STUDENT_GENDER')
-        parser.add_argument('FATHER_EDUCATION')
-        parser.add_argument('FATHER_OCUPATION')
-        parser.add_argument('MOTHER_EDUCATION')
-        parser.add_argument('MOTHER_OCUPATION')
-        parser.add_argument('GPA_YEAR_1_SEMESTER_2')
+        parser.add_argument('ADMISSIONS_TYPE',type=str)
+        parser.add_argument('FACULTY',type=str)
+        parser.add_argument('SCHOOL_NAME',type=str)
+        parser.add_argument('ENTRY_GPA',type=str)
+        parser.add_argument('YEAR_COME',type=str)
+        parser.add_argument('STUDENT_GENDER',type=str)
+        parser.add_argument('FATHER_EDUCATION',type=str)
+        parser.add_argument('FATHER_OCUPATION',type=str)
+        parser.add_argument('MOTHER_EDUCATION',type=str)
+        parser.add_argument('MOTHER_OCUPATION',type=str)
+        parser.add_argument('GPA_YEAR_1_SEMESTER_2',type=str)
         args = parser.parse_args()
         
         def check_admissions_type(str_entry_type):

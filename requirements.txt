@@ -5,4 +5,6 @@ numpy==1.18.1
 scikit-learn==0.21.2
 scipy>=0.15.1
 joblib==0.14.0
+Werkzeug
+Jinja2 
 uwsgi
