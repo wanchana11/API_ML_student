@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request,jsonify
 from flask_restful import Resource, Api, reqparse
 from sklearn.externals import joblib
 import pandas as pd
@@ -237,39 +237,39 @@ class student_predict(Resource):
                 str_result = 'สำเร็จการศึกษา'
             elif (best_class_name == 1):
                 str_result = 'ไม่สำเร็จการศึกษา'
-            return {"result": str_result,
-                    "pro_ba":  str_pro_ba2}, 201
+            return jsonify(result=str_result,
+                           pro_ba=str_pro_ba2)
         else:
             if check_str_faculty_name == True:
                 str_result = 'Faculty name ไม่ถูกต้อง'
-                return {"result": str_result}, 201
+                return jsonify(result=str_result)
             elif check_str_entry_gpa == True:
                 str_result = 'Entry GPA ไม่ถูกต้อง หรือ Entry GPA ไม่รองรับข้อความ'
-                return {"result": str_result}, 201
+                return jsonify(result=str_result)
             elif check_str_sex == True:
                 str_result = 'Gender ไม่ถูกต้อง'
-                return {"result": str_result}, 201
+                return jsonify(result=str_result)
             elif check_str_year_come == True:
                 str_result = 'Year come ไม่รองรับข้อความ กรุณากรองเป็นตัวเลข'
-                return {"result": str_result}, 201
+                return jsonify(result=str_result)
             elif check_str_id_father_education == True:
                 str_result = 'ระดับการศึกษาของบิดาไม่ถูกต้องหรือไม่รองรับระดับการศึกษาในการทำนาย'
-                return {"result": str_result}, 201
+                return jsonify(result=str_result)
             elif check_str_id_father_ocupation == True:
                 str_result = 'อาชีพของบิดาไม่ถูกต้องหรือไม่รองรับอาชีพในการทำนาย'
-                return {"result": str_result}, 201
+                return jsonify(result=str_result)
             elif check_str_id_mother_education == True:
                 str_result = 'ระดับการศึกษาของมารดาไม่ถูกต้องหรือไม่รองรับระดับการศึกษาในการทำนาย'
-                return {"result": str_result}, 201
+                return jsonify(result=str_result)
             elif check_str_id_mother_ocupation == True:
                 str_result = 'อาชีพของมารดาไม่ถูกต้องหรือไม่รองรับอาชีพในการทำนาย'
-                return {"result": str_result}, 201
+                return jsonify(result=str_result)
             elif check_str_school_name == True:
                 str_result = 'ชื่อโรงเรียนไม่ถูกต้อง'
-                return {"result": str_result}, 201
+                return jsonify(result=str_result)
             elif check_str_admissions_type == True:
                 str_result = 'Admissions type ไม่ถูกต้อง'
-                return {"result": str_result}, 201
+                return jsonify(result=str_result)
 api.add_resource(student_predict, "/student_predict")
 
 class student_predict_gpa(Resource):
@@ -474,42 +474,42 @@ class student_predict_gpa(Resource):
                 str_result = 'สำเร็จการศึกษา'
             elif (best_class_name == 1):
                 str_result = 'ไม่สำเร็จการศึกษา'
-            return {"result": str_result,
-                    "pro_ba":  str_pro_ba2}, 201
+            return jsonify(result=str_result,
+                           pro_ba=str_pro_ba2)
         else:
             if check_str_faculty_name == True:
                 str_result = 'Faculty name ไม่ถูกต้อง'
-                return {"result": str_result}, 201
+                return jsonify(result=str_result)
             elif check_str_entry_gpa == True:
                 str_result = 'Entry GPA ไม่ถูกต้อง หรือ Entry GPA ไม่รองรับข้อความ'
-                return {"result": str_result}, 201
+                return jsonify(result=str_result)
             elif check_str_sex == True:
                 str_result = 'Gender ไม่ถูกต้อง'
-                return {"result": str_result}, 201
+                return jsonify(result=str_result)
             elif check_str_year_come == True:
                 str_result = 'Year come ไม่รองรับข้อความ กรุณากรองเป็นตัวเลข'
-                return {"result": str_result}, 201
+                return jsonify(result=str_result)
             elif check_str_id_father_education == True:
                 str_result = 'ระดับการศึกษาของบิดาไม่ถูกต้องหรือไม่รองรับระดับการศึกษาในการทำนาย'
-                return {"result": str_result}, 201
+                return jsonify(result=str_result)
             elif check_str_id_father_ocupation == True:
                 str_result = 'อาชีพของบิดาไม่ถูกต้องหรือไม่รองรับอาชีพในการทำนาย'
-                return {"result": str_result}, 201
+                return jsonify(result=str_result)
             elif check_str_id_mother_education == True:
                 str_result = 'ระดับการศึกษาของมารดาไม่ถูกต้องหรือไม่รองรับระดับการศึกษาในการทำนาย'
-                return {"result": str_result}, 201
+                return jsonify(result=str_result)
             elif check_str_id_mother_ocupation == True:
                 str_result = 'อาชีพของมารดาไม่ถูกต้องหรือไม่รองรับอาชีพในการทำนาย'
-                return {"result": str_result}, 201
+                return jsonify(result=str_result)
             elif check_str_id_gpa_1_2 == True:
                 str_result = 'GPA ปี1 เทอม 2 ไม่ถูกต้องหรือไม่รองรับข้อความ'
-                return {"result": str_result}, 201
+                return jsonify(result=str_result)
             elif check_str_school_name == True:
                 str_result = 'ชื่อโรงเรียนไม่ถูกต้อง'
-                return {"result": str_result}, 201
+                return jsonify(result=str_result)
             elif check_str_admissions_type == True:
                 str_result = 'Admissions type ไม่ถูกต้อง'
-                return {"result": str_result}, 201
+                return jsonify(result=str_result)
 api.add_resource(student_predict_gpa, "/student_predict_gpa")
 if __name__=='__main__':
     app.run(debug=True)
