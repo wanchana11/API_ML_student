@@ -1,9 +1,7 @@
 Flask==1.1.1
-gunicorn==19.9.0
-itsdangerous==1.1.0
+Flask-RESTful==0.3.7
 pandas==0.24.2
 numpy==1.18.1
-Flask-RESTful==0.3.7
 scikit-learn==0.21.2
 scipy>=0.15.1
 joblib==0.14.0

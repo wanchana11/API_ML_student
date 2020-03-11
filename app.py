@@ -52,6 +52,7 @@ id_father_ocupation_array=[6,7,0,1,8,2,3,4,5]
 mother_ocupation_array=["เกษตรกร/ประมง","เจ้าของหรือผู้ประกอบธุรกิจส่วนตัว,ค้าขาย","พนักงานรัฐวิสาหกิจ","พนักงานหรือลูกจ้างเอกชน","แม่บ้าน","ไม่ประกอบอาชีพ","รับจ้าง","รับราชการ ( ลูกจ้างชั่วคราว )","อื่นๆ ระบุ","รับราชการ ( ข้าราชการ, ลูกจ้างประจำ )"]
 id_mother_ocupation_array=[6,7,0,1,8,9,2,3,4,5]
 id_mother_ocupation_array_use_gpa=[6,7,0,1,8,9,2,3,4,5]
+
 app = Flask(__name__)
 api = Api(app)    
                         
@@ -61,18 +62,7 @@ model = joblib.load('SVM_model_student_last.pkl')
 model_gpa =joblib.load('NN_model_student_use_GPA.pkl')
 class student_predict(Resource):
     def get(self):        
-        return {"student_predication":"Welcome to API for student prediction perfomance no use GPA university year 1 semesters 2",
-                "How": "Use Post and add 10 parameter as follows",
-                "Key_1":"ADMISSIONS_TYPE",
-                "Key_2":"FACULTY",
-                "Key_3":"SCHOOL_NAME",
-                "Key_4":"ENTRY_GPA",
-                "Key_5":"YEAR_COME",
-                "Key_6":"STUDENT_GENDER",
-                "Key_7":"FATHER_EDUCATION",
-                "Key_8":"FATHER_OCUPATION",
-                "Key_9":"MOTHER_EDUCATION",
-                "Key_10":"MOTHER_OCUPATION"}
+        return {"student_predication":"Welcome to API for student prediction perfomance no use GPA university year 1 semesters 2"}
 
     def post(self):
         parser = reqparse.RequestParser()
