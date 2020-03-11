@@ -273,19 +273,7 @@ api.add_resource(student_predict, "/student_predict")
 
 class student_predict_gpa(Resource):
     def get(self): 
-        return {"student_predication":"Welcome to API for student prediction perfomance use GPA university year 1 semesters 2",
-                "How": "Use Post and add 11 parameter as follows",
-                "Key_1":"ADMISSIONS_TYPE",
-                "Key_2":"FACULTY",
-                "Key_3":"SCHOOL_NAME",
-                "Key_4":"ENTRY_GPA",
-                "Key_5":"YEAR_COME",
-                "Key_6":"STUDENT_GENDER",
-                "Key_7":"FATHER_EDUCATION",
-                "Key_8":"FATHER_OCUPATION",
-                "Key_9":"MOTHER_EDUCATION",
-                "Key_10":"MOTHER_OCUPATION",
-                "Key_11":"GPA_YEAR_1_SEMESTER_2"}
+        return {"student_predication":"Welcome to API for student prediction perfomance use GPA university year 1 semesters 2"}
                 
     def post(self):
         parser = reqparse.RequestParser()
