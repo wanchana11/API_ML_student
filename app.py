@@ -532,4 +532,5 @@ class student_predict_gpa(Resource):
                 str_result = 'Admissions type ไม่ถูกต้อง'
                 return {"result": str_result}, 201
 api.add_resource(student_predict_gpa, "/student_predict_gpa")
-app.run(debug=True)
+if __name__=='__main__':
+    app.run(debug=True)
