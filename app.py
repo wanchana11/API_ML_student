@@ -3,6 +3,7 @@ from flask_restful import Resource, Api, reqparse
 from sklearn.externals import joblib
 import pandas as pd
 import numpy as np
+from flask_cors import CORS
 from urllib.parse import unquote
 school_name_array= ["กมลาไสย","กันทรลักษ์วิทยา","กัลยาณวัตร","กาญจนาภิเษกวิทยาลัย","กาฬสินธุ์พิทยาสรรพ์","กุมภวาปี","ขอนแก่นวิทยายน","ขามแก่นนคร",\
 "คำเขื่อนแก้วชนูปถัมภ์","อุบลรัตน์พิทยาคม","จันทรุเบกษาอนุสรณ์","จุฬาภรณราชวิทยาลัย  มุกดาหาร","ชนบทศึกษา","ชัยภูมิภักดีชุมพล","ชุมพลโพนพิสัย","ชุมแพศึกษา",\
@@ -56,7 +57,7 @@ id_mother_ocupation_array_use_gpa=[6,7,0,1,8,9,2,3,4,5]
 
 app = Flask(__name__)
 api = Api(app)    
-                        
+CORS(app)                        
                                                
 # Model       
 model = joblib.load('SVM_model_student_last.pkl')
@@ -228,9 +229,8 @@ class student_predict(Resource):
             print(x)
             print("predict :", predictions[0])
             best_class_name = np.argmax(predictions, axis=1)
-            best_class_probabilities = predictions[np.arange(len(best_class_name)), best_class_name]
             #result= int(result_model[0])
-            pro_ba = str(best_class_probabilities)
+            pro_ba = predictions[0][0] 
             str_pro_ba = pro_ba.replace('[','')
             str_pro_ba2 = str_pro_ba.replace(']','')
             if (best_class_name == 0):
@@ -238,7 +238,7 @@ class student_predict(Resource):
             elif (best_class_name == 1):
                 str_result = 'ไม่สำเร็จการศึกษา'
             return jsonify(result=str_result,
-                           pro_ba=str_pro_ba2)
+                           pro_ba=pro_ba)
         else:
             if check_str_faculty_name == True:
                 str_result = 'Faculty name ไม่ถูกต้อง'
@@ -465,17 +465,14 @@ class student_predict_gpa(Resource):
             print(x)
             print("predict :", predictions[0])
             best_class_name = np.argmax(predictions, axis=1)
-            best_class_probabilities = predictions[np.arange(len(best_class_name)), best_class_name]
             #result= int(result_model[0])
-            pro_ba = str(best_class_probabilities)
-            str_pro_ba = pro_ba.replace('[','')
-            str_pro_ba2 = str_pro_ba.replace(']','')
+            pro_ba = predictions[0][0] 
             if (best_class_name == 0):
                 str_result = 'สำเร็จการศึกษา'
             elif (best_class_name == 1):
                 str_result = 'ไม่สำเร็จการศึกษา'
             return jsonify(result=str_result,
-                           pro_ba=str_pro_ba2)
+                           pro_ba=pro_ba )
         else:
             if check_str_faculty_name == True:
                 str_result = 'Faculty name ไม่ถูกต้อง'
