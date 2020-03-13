@@ -64,7 +64,7 @@ model = joblib.load('SVM_model_student_last.pkl')
 model_gpa =joblib.load('NN_model_student_use_GPA.pkl')
 class student_predict(Resource):
     def get(self):        
-        return {"student_predication":"Welcome to API for student prediction perfomance no use GPA university year 1 semesters 2 สำเร็จการสึกษา"}
+        return {"student_predication":"Welcome to API for student prediction perfomance no use GPA university year 1 semesters 2 "}
 
     def post(self):
         parser = reqparse.RequestParser()
@@ -231,8 +231,6 @@ class student_predict(Resource):
             best_class_name = np.argmax(predictions, axis=1)
             #result= int(result_model[0])
             pro_ba = predictions[0][0] 
-            str_pro_ba = pro_ba.replace('[','')
-            str_pro_ba2 = str_pro_ba.replace(']','')
             if (best_class_name == 0):
                 str_result = 'สำเร็จการศึกษา'
             elif (best_class_name == 1):
